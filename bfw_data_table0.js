@@ -5,8 +5,8 @@ looker.plugins.visualizations.add({
     element.innerHTML = "<p></p>";
   },
   update: function (data, element, config, queryResponse, details) {
-    console.log(JSON.stringify(data));
-    console.log(JSON.stringify(queryResponse));
+    console.log(data);
+    console.log(queryResponse);
 
     // var num_cols = Object.keys(queryResponse.fields.dimension).length;
 
