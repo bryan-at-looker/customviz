@@ -8,24 +8,32 @@ looker.plugins.visualizations.add({
     console.log(data)
     console.log(queryResponse)
 
+    var num_cols = queryResponse.fields.dimension.length
+
 
     var html = '<table id="example" style="width:100%">';
 
     html += '<thead><tr>';
 
-
-
-    html += '<th>Close Date</th>';
+    for(var cols of queryResponse.fields.dimension) {
+        html += '<th>';
+        html += cols.name;
+        html += '</th>';
+    }
 
     html += '</tr></thead>';
 
     html += '<tbody>';
 
     for(var row of data) {
-        var cell = row[queryResponse.fields.dimensions[0].name];
-        html += '<tr><td>';
-        html += LookerCharts.Utils.htmlForCell(cell);
-        html += '</td></tr>';
+        html += '<tr>';
+        for (i = 0; i < num_cols; i++) {
+            var cell = row[queryResponse.fields.dimensions[i].name];
+            html += '<td>';
+            html += LookerCharts.Utils.htmlForCell(cell);
+            html += '</td>';
+        }
+        html += '</tr>';   
     }
     
     html += '</tbody>';
