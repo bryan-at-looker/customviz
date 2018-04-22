@@ -27,7 +27,7 @@ looker.plugins.visualizations.add({
 
     for(var row of data) {
         html += '<tr>';
-        for (i = 0; i < num_cols; i++) {
+        for (var i = 0; i < num_cols; i++) {
             var cell = row[queryResponse.fields.dimensions[i].name];
             html += '<td>';
             html += LookerCharts.Utils.htmlForCell(cell);
