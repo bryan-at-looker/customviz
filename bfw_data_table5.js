@@ -26,9 +26,9 @@ looker.plugins.visualizations.add({
         html += '</td></tr>';
     }
     
-    var html += '</tbody>';
+    html += '</tbody>';
 
-    var html += '</table>';
+    html += '</table>';
 
     element.innerHTML = html;
 
