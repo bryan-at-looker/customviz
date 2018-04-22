@@ -2,7 +2,7 @@ looker.plugins.visualizations.add({
   id: "demo_viz",
   label: "Demo",
   create: function (element, config) {
-    element.innerHTML = "<p id></p>";
+    element.innerHTML = "<p></p>";
   },
   update: function (data, element, config, queryResponse, details) {
 
