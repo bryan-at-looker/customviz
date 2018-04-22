@@ -5,8 +5,8 @@ looker.plugins.visualizations.add({
     element.innerHTML = "<p></p>";
   },
   update: function (data, element, config, queryResponse, details) {
-    console.log(data)
-    console.log(queryResponse)
+    console.log(JSON.parse(data));
+    console.log(JSON.parse(queryResponse));
 
     var num_cols = queryResponse.fields.dimension.length
 
@@ -33,7 +33,7 @@ looker.plugins.visualizations.add({
             html += LookerCharts.Utils.htmlForCell(cell);
             html += '</td>';
         }
-        html += '</tr>';   
+        html += '</tr>';  
     }
     
     html += '</tbody>';
