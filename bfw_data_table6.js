@@ -8,7 +8,7 @@ looker.plugins.visualizations.add({
     console.log(JSON.stringify(data));
     console.log(JSON.stringify(queryResponse));
 
-    var num_cols = queryResponse.fields.dimension.length
+    var num_cols = Object.keys(queryResponse.fields.dimension[i]).length;
 
 
     var html = '<table id="example" style="width:100%">';
