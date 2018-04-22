@@ -10,7 +10,5 @@ looker.plugins.visualizations.add({
         $(document).ready( function () {
              $('#table_id').DataTable();
         } );
-
-} );;
     }
 });
