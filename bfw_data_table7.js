@@ -6,9 +6,9 @@ looker.plugins.visualizations.add({
   },
   update: function (data, element, config, queryResponse, details) {
     console.log(JSON.stringify(data));
-    console.log(JSON.stringify(queryResponse));
+    console.log(JSON.stringify(queryResponse.fields.dimension));
 
-    var num_cols = Object.keys(queryResponse.fields.dimension[i]).length;
+    var num_cols = Object.keys(queryResponse.fields.dimension).length;
 
 
     var html = '<table id="example" style="width:100%">';
