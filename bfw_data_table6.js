@@ -5,7 +5,9 @@ looker.plugins.visualizations.add({
     element.innerHTML = "<p></p>";
   },
   update: function (data, element, config, queryResponse, details) {
+    console.log(data)
     console.log(queryResponse)
+
 
     var html = '<table id="example" style="width:100%">';
 
