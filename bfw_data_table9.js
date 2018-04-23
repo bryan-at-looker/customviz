@@ -3,7 +3,6 @@ looker.plugins.visualizations.add({
   label: "Demo",
   create: function (element, config) {
     element.innerHTML = "<p></p>";
-    if (!document.getElementById) document.write('<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">');
   },
   update: function (data, element, config, queryResponse, details) {
     console.log(data);
