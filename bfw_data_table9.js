@@ -42,7 +42,9 @@ looker.plugins.visualizations.add({
     element.innerHTML = html;
 
     $(document).ready(function() {
-      $('#myTable').DataTable();
+      $('#myTable').DataTable({
+    colReorder: true
+});
     } );
   }
 });
