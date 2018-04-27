@@ -10,7 +10,7 @@ looker.plugins.visualizations.add({
 
     var num_cols = queryResponse.fields.dimensions.length;
 
-    var html = '<table id="example">';
+    var html = '<table id="myTable">';
 
     html += '<thead><tr>';
 
