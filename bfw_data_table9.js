@@ -42,7 +42,7 @@ looker.plugins.visualizations.add({
     element.innerHTML = html;
 
     $(document).ready(function() {
-      $('#example').DataTable();
+      $('#myTable').DataTable();
     } );
   }
 });
