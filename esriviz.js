@@ -18,7 +18,6 @@ looker.plugins.visualizations.add({
   `;
 
 	// document.write("<script src=\"https://js.arcgis.com/4.6/\"></script>");
-  document.getElementsByTagName('body')[0].appendChild(script);
 
   // Create a container element to let us center the text.
   var container = element.appendChild(document.createElement("div"));
