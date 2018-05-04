@@ -103,12 +103,12 @@ require([
   // map.add(fl);
 
   // view.then(function() {
-    view.goTo({
-        center: [-117.1382,32.7232],
-        zoom: 14,
-        heading: 30,
-        tilt: 60
-      }, { speedFactor: 0.25 });
+    // view.goTo({
+    //     center: [-117.1382,32.7232],
+    //     zoom: 14,
+    //     heading: 30,
+    //     tilt: 60
+    //   }, { speedFactor: 0.25 });
   // });
 })
 };
