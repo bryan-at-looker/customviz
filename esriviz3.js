@@ -26,9 +26,12 @@ looker.plugins.visualizations.add({
   // Create an element to contain the text.
   // this._textElement = container.appendChild(document.createElement("div"));
 
+  },
+  update: function(data, element, config, queryResponse) {
+
   var fl;
-	var map;
-	var graphics = [];
+  var map;
+  var graphics = [];
 
 function makeMap() {
 require([
@@ -51,51 +54,51 @@ require([
 
 
   var view = new SceneView({
-    container: "esri_map-vis	",
+    container: "esri_map-vis",
     map: map,
     scale: 50000000,
     center: [-101.17, 21.78]
   });
 
-dot1 = new SimpleMarkerSymbol({
-      size: 20,
-      color: "red",
-      outline: {
-        width: 1,
-        color: "white"
-      }})
+// dot1 = new SimpleMarkerSymbol({
+//       size: 20,
+//       color: "red",
+//       outline: {
+//         width: 1,
+//         color: "white"
+//       }})
 
-dot2 = new SimpleMarkerSymbol({
-      size: 20,
-      color: "blue",
-      outline: {
-        width: 1,
-        color: "white"
-      }})
+// dot2 = new SimpleMarkerSymbol({
+//       size: 20,
+//       color: "blue",
+//       outline: {
+//         width: 1,
+//         color: "white"
+//       }})
 
-dot3 = new SimpleMarkerSymbol({
-      size: 20,
-      color: "green",
-      outline: {
-        width: 1,
-        color: "white"
-      }})
+// dot3 = new SimpleMarkerSymbol({
+//       size: 20,
+//       color: "green",
+//       outline: {
+//         width: 1,
+//         color: "white"
+//       }})
 
-var renderer = {
-  type: "unique-value",  // autocasts as new UniqueValueRenderer()
-  field: "crime_type",  // values returned by this function will
-                     // be used to render features by type
-  uniqueValueInfos: [{
-      value: "Burglary",  // features labeled as "High"
-      symbol: dot1  // will be assigned sym1
-    }, {
-      value: "Vandalism",  // features labeled as "Medium"
-      symbol: dot2  // will be assigned sym2
-    }, {
-      value: "Theft",  // features labeled as "Medium"
-      symbol: dot3  // will be assigned sym2
-    }]
-};
+// var renderer = {
+//   type: "unique-value",  // autocasts as new UniqueValueRenderer()
+//   field: "crime_type",  // values returned by this function will
+//                      // be used to render features by type
+//   uniqueValueInfos: [{
+//       value: "Burglary",  // features labeled as "High"
+//       symbol: dot1  // will be assigned sym1
+//     }, {
+//       value: "Vandalism",  // features labeled as "Medium"
+//       symbol: dot2  // will be assigned sym2
+//     }, {
+//       value: "Theft",  // features labeled as "Medium"
+//       symbol: dot3  // will be assigned sym2
+//     }]
+// };
 
   // map.add(fl);
 
@@ -107,8 +110,7 @@ var renderer = {
       }, { speedFactor: 0.25 })});
 })
 };
-  	makeMap();
-  },
-  update: function(data, element, config, queryResponse) {
+    makeMap();
+
   }
 })
