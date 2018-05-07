@@ -1,8 +1,8 @@
 (function() {
   var viz = {
-    // id: "highcharts_waterfall",
-    // label: "Waterfall",
-    // Set up the initial state of the visualization
+    id: "highcharts_waterfall",
+    label: "Waterfall",
+    Set up the initial state of the visualization
     create: function(element, config) {
             var css = element.innerHTML = `
                 <style>
