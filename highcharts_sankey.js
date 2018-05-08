@@ -1,7 +1,7 @@
 (function() {
   var viz = {
-    id: "highcharts_waterfall",
-    label: "Waterfall",
+    id: "highcharts_sankey",
+    label: "Forecast Sankey",
     // Set up the initial state of the visualization
     create: function(element, config) {
         var css = element.innerHTML = `
@@ -20,10 +20,6 @@
     // Render in response to the data or settings changing
     update: function(data, element, config, queryResponse) {
 
-        console.log(queryResponse)
-        console.log(data)
-        console.log(data.length)
-
         var num_objects = queryResponse.fields.dimension_like.length;
         var temp = [];
         var dt2 = [];
@@ -35,10 +31,7 @@
             }
             temp[num_objects] = data[j][queryResponse.fields.measure_like[0].name].value;
             dt2.push(temp);
-            console.log(temp); 
-            console.log
         }
-        console.log(dt2)
 
     Highcharts.setOptions({
         lang: {
