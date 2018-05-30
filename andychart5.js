@@ -22,9 +22,8 @@
           update: function(data, element, config, queryResponse) {
 
 Highcharts.chart('andychart', {
-  chart: {
-        animation: {
-            duration: 10000
+  animation: {
+    duration: 10000
   },
   xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
