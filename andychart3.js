@@ -9,7 +9,8 @@
               label: "Up Color",
               display: "color",
               default: "green"
-            },
+            }
+          },
 
           // Set up the initial state of the visualization
           create: function(element, config) {
