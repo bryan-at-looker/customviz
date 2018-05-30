@@ -2,6 +2,14 @@
         var viz = {
           id: "highcharts_sankey",
           label: "Forecast Sankey",
+          options: {
+            color_up: {
+              section: "Chart",
+              type: "string",
+              label: "Up Color",
+              display: "color",
+              default: "green"
+            },
 
           // Set up the initial state of the visualization
           create: function(element, config) {
@@ -17,7 +25,7 @@ Highcharts.chart('andychart', {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 
         plotLines: [{
-            color: '#FF0000',
+            color: config.color_up,
             width: 2,
             value: 5.5
         }]
@@ -31,4 +39,4 @@ Highcharts.chart('andychart', {
           }
       };
       looker.plugins.visualizations.add(viz);
-      }()); 
+      }());
