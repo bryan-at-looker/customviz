@@ -1,7 +1,7 @@
   (function() {
         var viz = {
-          id: "500friends",
-          label: "TEST - 500friends Table",
+          id: "testtable",
+          label: "TEST - Table",
           options: {
             previous_month: {
               section: "Chart",
@@ -15,13 +15,13 @@
           // Set up the initial state of the visualization
           create: function(element, config) {
               var css = element.innerHTML = `
-              <div id="500buddies"></div>
+              <div id="testtable"></div>
               `;
           },
           // Render in response to the data or settings changing
           update: function(data, element, config, queryResponse) {
 
-            if ($("#500buddies").hasClass("tabulator")){ $("#500buddies").tabulator("destroy") }
+            if ($("#testtable").hasClass("tabulator")){ $("#testtable").tabulator("destroy") }
 
             var clmns = [ { title: "Measure", field: "measure", sortable: true, datanum:-1 } ];
             for (var i=0; i<data.length; i++) {
@@ -59,7 +59,7 @@
 
 
 
-            var tbl = $("#500buddies").tabulator({
+            var tbl = $("#testtable").tabulator({
               layout: "fitColumns",
               columns: clmns,
               data: rws
