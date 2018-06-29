@@ -19,6 +19,7 @@ looker.plugins.visualizations.add({
   // Create a container element to let us center the text.
   var container = element.appendChild(document.createElement("div"));
   container.className = "hello-world-vis";
+  container.id = "hello-world-vis";
 
   // Create an element to contain the text.
   this._textElement = container.appendChild(document.createElement("div"));
