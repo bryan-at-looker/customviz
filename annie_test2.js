@@ -1,6 +1,6 @@
 looker.plugins.visualizations.add({
   id: "hello_world",
-  label: "Hello World"
+  label: "Hello World",
   create: function(element, config) {
          // Insert a <style> tag with some styles we'll use later.
   var css = element.innerHTML = `
