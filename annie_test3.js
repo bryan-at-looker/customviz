@@ -23,7 +23,7 @@ looker.plugins.visualizations.add({
   // Create an element to contain the text.
   this._textElement = container.appendChild(document.createElement("div"));
 
-  }
+  }, 
   update: function(data, element, config, queryResponse) {
          
 Highcharts.chart('hello-world-vis', {
