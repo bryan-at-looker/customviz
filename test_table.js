@@ -20,7 +20,6 @@
           },
           // Render in response to the data or settings changing
           update: function(data, element, config, queryResponse) {
-            console.log(data);
 
               if ($("#testtable").hasClass("tabulator")) { $("#testtable").tabulator("destroy") }
 
@@ -37,7 +36,7 @@
 
               var rws = []
               for (var i = 0; i < queryResponse.fields.measure_like.length; i++) {
-                  var rw = { measure: queryResponse.fields.measure_like[i].label_short };
+                  var rw = { measure: queryResponse.fields.measure_like[i].label_short ? (queryResponse.fields.measure_like[i].label_short) : queryResponse.fields.measure_like[i].label };
                   for (j = 1; j < clmns.length; j++) {
                       returned_value = data[clmns[j].datanum][queryResponse.fields.measure_like[i].name];
                       if (returned_value.rendered != null) {
