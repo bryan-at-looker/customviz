@@ -28,6 +28,13 @@ function unique(arr) {
         display: "radio",
         default: true
       },
+      showLegend: {
+        section: "Chart",
+        type: "boolean",
+        label: "Show Legend",
+        display: "radio",
+        default: true
+      },
       cellBorder: {
         section: "Chart",
         type: "boolean",
@@ -65,6 +72,9 @@ function unique(arr) {
     // Render in response to the data or settings changing
     updateAsync: function(data, element, config, queryResponse, details, doneRendering) {  
 
+      if ( chartHC ) {
+        chartHC.destroy();
+      }
       // Clear any errors from previous updates.
       this.clearErrors();
 
@@ -151,11 +161,12 @@ function unique(arr) {
         }
       }
       
-      var chart = Highcharts.chart('container', {
+      var chartHC = Highcharts.chart('container', {
         
         chart: {
           type: 'heatmap',
-          plotBorderWidth: 1
+          plotBorderWidth: 1,
+          animation: false
         },
         
         exporting: { enabled: false },
@@ -172,6 +183,10 @@ function unique(arr) {
           title: null,
           visible: config.yAxis
         },
+
+        legend: {
+          enabled: config.showLegend
+        },
         
         tooltip: {
           useHTML: true,
@@ -181,15 +196,42 @@ function unique(arr) {
             this.point.value + '<br>'
             return tt
           }
-        },
+        }
         
-        series: [{
-          borderWidth: 1 ? config.cellBorder : 0,
-          showInLegend: false,  
-          turboThreshold: 0,
-          data: seriesData
-        }]
+        // series: [{
+        //   borderWidth: 1 ? config.cellBorder : 0,
+        //   // showInLegend: false,  
+        //   turboThreshold: 0,
+        //   data: seriesData
+        // }]
       });
+
+      for( var i = 0; i<uniqueBox.length; i++) {
+        tmpSeries = []
+        for (var j = 0; j<seriesData.length; j++) {
+          let tmp = seriesData[j];
+          // console.log(tmp);
+          if ( tmp.value == null ) {
+            if ( uniqueBox[i] == null ) {
+              tmpSeries.push(tmp);
+            }
+          } else if (  tmp.value.indexOf(uniqueBox[i]) > -1 ) {
+            tmpSeries.push(tmp);
+          }
+        }
+
+        newSeries = { 
+          turboThreshold: 0,
+          borderWidth: 1 ? config.cellBorder : 0,
+          borderColor: '#cccccc'
+        }
+        newSeries['name'] = uniqueBox[i] || '∅';
+        newSeries['color'] = color_object[uniqueBox[i]];
+        newSeries['data'] = tmpSeries;
+
+        chartHC.addSeries(newSeries);
+      }
+
       doneRendering()
     }
   };
