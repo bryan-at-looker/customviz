@@ -123,9 +123,14 @@ looker.plugins.visualizations.add({
     }
 
     if (!errors) {
+
+      // console.log(queryResponse)
+      // console.log(data)
+      // console.log(config)
   
       var firstPivot = queryResponse.pivots[0].key
       var secondPivot = queryResponse.pivots[1].key
+      var firstPivotDataStart;
       var firstMeasure = queryResponse.fields.measure_like[0].name
       var firstDimension = queryResponse.fields.dimension_like[0].name
   
@@ -134,25 +139,50 @@ looker.plugins.visualizations.add({
       var totalPivotValues = [queryResponse.totals_data[firstMeasure][firstPivot].value, 
                          queryResponse.totals_data[firstMeasure][secondPivot].value ]
       
-      singleValueNumber.innerHTML = totalPivotValues[0]
+      var totalHTML = document.createElement('div');
+      totalHTML.innerHTML = queryResponse.totals_data[firstMeasure][firstPivot].html;
+      while (totalHTML.childElementCount > 0 ) {
+        totalHTML.innerHTML = totalHTML.firstChild.innerHTML
+      }
+
+      singleValueNumber.innerHTML = totalHTML.innerHTML
       singleValueChange.innerHTML = changeFormatter(totalPivotValues[0],totalPivotValues[1],config.percent_change, config.positive_is_bad)
       
-  
+      var secondPivot = data.map(row => {
+        if(row[firstMeasure][secondPivot].value != null) {
+          return {y: row[firstMeasure][secondPivot].value}
+        }
+      }).filter(function(item){return typeof item ==='object'; })
+
+      var counter = -1
+
       var firstPivot = data.map(row => {
         let link = row[firstMeasure][firstPivot].links;
+
+        // put a flag for when the pivot starts having values in it.
+        if (!firstPivotDataStart && row[firstMeasure][firstPivot].value != null ) {
+          firstPivotDataStart = row[firstMeasure][firstPivot].value;
+        }
+        if (row[firstMeasure][firstPivot].value != null) {
+          counter = counter+1;
+        }
         var obj = {
-          x_rendered: ( row[firstDimension].rendered_value ) ? row[firstDimension].rendered_value : row[firstDimension].value,
+          x_rendered: ( row[firstDimension].rendered ) ? row[firstDimension].rendered : row[firstDimension].value,
           y: row[firstMeasure][firstPivot].value,
-          y_rendered: ( row[firstMeasure][firstPivot].rendered_value ) ? row[firstMeasure][firstPivot].rendered_value : row[firstMeasure][firstPivot].value,
-          change: changeFormatter(row[firstMeasure][firstPivot].value,row[firstMeasure][secondPivot].value,config.percent_change, config.positive_is_bad),
+          y_rendered: ( row[firstMeasure][firstPivot].rendered ) ? row[firstMeasure][firstPivot].rendered : row[firstMeasure][firstPivot].value,
           events: {
             click: function(event) {
                 window.LookerCharts.Utils.openDrillMenu({links: link, event})
             }
           }
         }
-        return obj
-      })
+        if (secondPivot[counter]) {
+          obj.change = changeFormatter(row[firstMeasure][firstPivot].value,secondPivot[counter].y,config.percent_change, config.positive_is_bad);
+        }
+        if (firstPivotDataStart) {
+          return obj
+        }
+      }).filter(function(item){return typeof item ==='object'; })
   
       Highcharts.chart('chartContainer', {
         chart: {
